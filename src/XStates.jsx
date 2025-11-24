@@ -88,7 +88,7 @@ export default function XStates(){
                 ))}
             </select>
         </div>
-        {value1 && value2 && value3 && (<h4>You selected {value1}, {value2}, {value3}</h4>)}
+        {value1 && value2 && value3 && (<h4>You selected {value3}, {value2}, {value1}</h4>)}
         </>
     )
 }
