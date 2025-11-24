@@ -11,10 +11,14 @@ export default function XStates(){
 
     useEffect(()=>{
         const fetchCountryData = async ()=>{
-            const data = await fetch("https://location-selector.labs.crio.do/countries");
-            const finalData = await data.json();
-            console.log({finalData})
-            setCountry(finalData);
+            try {
+                const data = await fetch("https://location-selector.labs.crio.do/countries");
+                const finalData = await data.json();
+                console.log({finalData})
+                setCountry(finalData);
+            } catch (error) {
+                console.error("Error fetching Countries", error)                
+            }
         }
         fetchCountryData();
     }, [])
@@ -22,23 +26,27 @@ export default function XStates(){
      useEffect(()=>{
         if(!value1) return
         const fetchStateData = async ()=>{
-            const data = await fetch(`https://location-selector.labs.crio.do/country=${value1}/states`);
-            const finalData = await data.json();
-            console.log({finalData})
-            setState(finalData);
+            try {
+                const data = await fetch(`https://location-selector.labs.crio.do/country=${value1}/states`);
+                const finalData = await data.json();
+                console.log({finalData})
+                setState(finalData);
+            } catch (error) {
+                console.error("Error fetching States", error) 
+            }
         }
         fetchStateData();
     }, [value1])
     
      useEffect(()=>{
         if(!value2) return
-        const fetchCountryData = async ()=>{
+        const fetchCityData = async ()=>{
             const data = await fetch(`https://location-selector.labs.crio.do/country=${value1}/state=${value2}/cities`);
             const finalData = await data.json();
             console.log({finalData})
             setCity(finalData);
         }
-        fetchCountryData();
+        fetchCityData();
     }, [value2])
 
     console.log({country})
